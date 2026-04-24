@@ -1,10 +1,10 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || '99hwj78t92',
   name: process.env.NEXT_PUBLIC_SITE_NAME || 'Redesocial Pro',
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Profile-first community discovery',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Premium image sharing and public profiles',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-    'A profile-led platform for public identity, updates, and social discovery.',
+    'Redesocial Pro is a minimal gallery for image-led posts and creator profiles—built for people who browse with intention.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'redesocialpro.com',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://redesocialpro.com',
   ogImage: process.env.NEXT_PUBLIC_SITE_OG_IMAGE || '/og-default.png',

@@ -2,75 +2,205 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Profile-first discovery platform',
+    tagline: 'Image sharing for people who care about craft',
+    searchCue: 'Search boards, creators, and visual posts',
+    emphasizedTaskKeys: ['image', 'profile'] as TaskKey[],
+    moreLabel: 'More',
   },
   footer: {
-    tagline: 'Profiles, collections, and community discovery',
+    tagline: 'Save inspiration, publish images, and grow your public profile',
   },
   hero: {
-    badge: 'Community profiles and discovery',
-    title: ['Move through public profiles, saved surfaces, and connected identity pages.'],
+    badge: 'Image sharing · Public profiles',
+    title: ['Your gallery and your public profile—', 'together in one premium surface.'],
     description:
-      'A profile and community platform centered on public identity, discovery, and connected resource trails.',
+      'Redesocial Pro is built for people who scroll images first: full-width frames, calm typography, and creator profiles that explain who made the work—without turning the site into a noisy feed.',
     primaryCta: {
-      label: 'View profiles',
-      href: '/profile',
+      label: 'Open the gallery',
+      href: '/images',
     },
     secondaryCta: {
-      label: 'Explore library',
-      href: '/sbm',
+      label: 'Browse profiles',
+      href: '/profile',
     },
-    searchPlaceholder: 'Search profiles, collections, creators, and public pages',
+    searchPlaceholder: 'Search image posts, profiles, and tags across the site',
+    /** Hero stat row — factual positioning for the product (not live metrics). */
+    stats: [
+      { kicker: 'Primary', line: 'Image posts & series' },
+      { kicker: 'Secondary', line: 'Public creator profiles' },
+      { kicker: 'Built for', line: 'Viewers who save references' },
+    ],
     focusLabel: 'Focus',
-    featureCardBadge: 'latest cover rotation',
-    featureCardTitle: 'Latest posts shape the visual identity of the homepage.',
+    featureCardBadge: 'Fresh from the gallery',
+    featureCardTitle: 'New uploads set the tone of the homepage feed.',
     featureCardDescription:
-      'Recent images and stories stay at the center of the experience without changing any core platform behavior.',
+      'The latest visuals stay center stage while profiles add context—without changing how the platform works under the hood.',
   },
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
+      title: 'Redesocial Pro — image sharing and public profiles',
       description:
-        'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
-      openGraphTitle: 'Stories, visuals, and discoverable content',
+        'Discover curated imagery, creator profiles, and visual stories on a premium, minimal gallery platform.',
+      openGraphTitle: 'Redesocial Pro — image sharing and public profiles',
       openGraphDescription:
-        'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
-      keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
+        'Browse image posts and public profiles with a gallery-first layout designed for viewers and creators.',
+      keywords: [
+        'image sharing',
+        'photo gallery',
+        'creator profiles',
+        'visual discovery',
+        'Redesocial Pro',
+        'portfolio',
+      ],
     },
-    introBadge: 'About the platform',
-    introTitle: 'Built for reading, browsing, and connecting different kinds of content.',
+    introBadge: 'How it works',
+    introTitle: 'A quieter feed for people who live in images.',
     introParagraphs: [
-      'This site brings together article-style reading, visual browsing, and structured discovery so visitors can move naturally between different content types.',
-      'Instead of separating stories, visuals, and supporting resources into disconnected surfaces, the platform keeps them connected in one place with consistent navigation and easier exploration.',
-      'Whether someone starts with a story, an image-led post, a listing, or a resource page, they can keep discovering related content without friction.',
+      'Redesocial Pro brings image posts and public profiles together so discovery feels continuous: scroll the gallery, land on a creator, and keep exploring related work.',
+      'The interface stays minimal on purpose—large imagery, soft surfaces, and typography that stays out of the way.',
+      'Every other task type remains available when you need it, but the experience stays tuned to viewers and visual publishing.',
     ],
     sideBadge: 'At a glance',
     sidePoints: [
-      'Reading-first homepage with stronger emphasis on stories and imagery.',
-      'Connected sections for articles, visuals, listings, and supporting resources.',
-      'Cleaner browsing rhythm designed to make exploration feel easier.',
-      'Lightweight interactions that keep the experience fast and readable.',
+      'Gallery-first homepage with masonry pacing and generous whitespace.',
+      'Profiles as the secondary lane for identity, credits, and follow-through.',
+      'Supporting sections stay reachable without crowding the main story.',
+      'Lightweight motion and CSS-first polish for fast load on mobile and desktop.',
     ],
     primaryLink: {
-      label: 'Browse articles',
-      href: '/articles',
+      label: 'Open images',
+      href: '/images',
     },
     secondaryLink: {
-      label: 'See visuals',
-      href: '/images',
+      label: 'Meet creators',
+      href: '/profile',
+    },
+    galleryFeature: {
+      kicker: 'Made for viewers',
+      title: 'Bring your favorite visuals into focus',
+      subtitle:
+        'With Redesocial Pro, you can tune discovery around mood, palette, and subject—then save what resonates to your profile trail.',
+      mockSearch: 'coastal minimal',
+      mockFilters: ['Palette', 'Subject', 'Format'],
+      popoverTitle: 'Tune by palette',
+      popoverHint: 'Preview swatches to steer results toward warm, cool, or neutral imagery.',
+      swatchLabels: ['Warm', 'Balanced', 'Deep', 'Muted', 'Rich'],
+      tileClasses: [
+        'from-[#c9a882] to-[#8d6b52]',
+        'from-[#9eb3a8] to-[#5C766D]',
+        'from-[#d8cfc5] to-[#9a8b82]',
+      ],
+      featureEyebrow: 'Discovery',
+      featureTitle: 'Tune discovery without losing the gallery feel',
+      featureBody:
+        'Filters stay lightweight and visual-first—so you spend less time configuring lists and more time browsing imagery that matches your taste.',
+      ctaLabel: 'Try the gallery',
+      ctaHref: '/images',
+    },
+    /** Homepage-only SaaS-style sections (visual product home). */
+    saasLanding: {
+      heroSearchCta: 'Search',
+      features: {
+        kicker: 'Why Redesocial Pro',
+        title: 'A calm gallery surface for serious visual publishing.',
+        subtitle:
+          'Redesocial Pro is built around image posts and public profiles: generous media, readable type, and navigation that gets out of the way. Articles, listings, classifieds, and saved boards stay on their usual routes whenever you need them.',
+        cards: [
+          {
+            icon: 'image' as const,
+            title: 'Immersive image presentation',
+            body: 'Spotlight framing, a horizontal ribbon of live posts, and cards that respect aspect ratio—so portfolios, mood boards, and campaign stills feel intentional instead of squeezed into a generic feed.',
+          },
+          {
+            icon: 'user' as const,
+            title: 'Profiles that complete the story',
+            body: 'Every public profile carries bio, links, and context so viewers can move from a frame they love to the creator behind it in one clear step.',
+          },
+          {
+            icon: 'search' as const,
+            title: 'One search, whole site',
+            body: 'The hero search strip opens the same search experience you use elsewhere—posts, profiles, and tags—without a second mental model.',
+          },
+          {
+            icon: 'sparkles' as const,
+            title: 'Light motion, fast loads',
+            body: 'Short CSS transitions, soft shadows, and restrained hover states keep the interface alive while staying quick on phones and laptops.',
+          },
+        ],
+      },
+      steps: {
+        kicker: 'How it works',
+        title: 'Publish imagery, refine your profile, stay easy to find',
+        items: [
+          {
+            title: 'Create image posts',
+            body: 'Use the image gallery task to publish stills or series. Titles, summaries, and media render on listing and detail pages exactly as the platform already does today.',
+          },
+          {
+            title: 'Polish your public profile',
+            body: 'The profile task is your identity lane: credits, outbound links, and highlights so collaborators know who they are reaching after seeing your work.',
+          },
+          {
+            title: 'Help viewers search and follow through',
+            body: 'Visitors start from the hero or navbar search, open a post, then land on your profile when they want more—same URLs and flows across the site.',
+          },
+          {
+            title: 'Keep other tools within reach',
+            body: 'Articles, listings, classifieds, and saved boards stay in the “More” menu and via direct links; they are not removed—just not the headline on this homepage.',
+          },
+        ],
+      },
+      testimonials: {
+        kicker: 'From people who ship visuals',
+        title: 'Built for the way portfolios are reviewed today',
+        items: [
+          {
+            quote:
+              'We wanted a client-facing gallery that felt like its own product. Redesocial Pro gives us that presentation while we keep the same publishing workflow our team already knows.',
+            name: 'Elena Voss',
+            role: 'Studio producer · Berlin',
+            highlight: false,
+          },
+          {
+            quote:
+              'Big imagery up front and a quiet profile page matches how our buyers actually browse: scroll frames first, read credits second.',
+            name: 'Marcus Reid',
+            role: 'Gallery coordinator · London',
+            highlight: true,
+          },
+          {
+            quote:
+              'Search in the hero matches search everywhere else on the site, so we are not teaching two different patterns to new visitors.',
+            name: 'Priya Nandakumar',
+            role: 'Brand lead · Singapore',
+            highlight: false,
+          },
+        ],
+      },
+      galleryRibbon: {
+        kicker: 'From your live feed',
+        title: 'Latest uploads on Redesocial Pro',
+        subtitle:
+          'This strip pulls the same image-task posts as your /images gallery—real content from your workspace, ordered by what is newest when the homepage loads.',
+      },
+      closing: {
+        title: 'Open the gallery—or meet creators on profile first',
+        subtitle:
+          'Accounts, tasks, and URLs are unchanged. This homepage is simply tuned for people who discover through imagery and follow through on public profiles.',
+      },
     },
   },
   cta: {
-    badge: 'Start exploring',
-    title: 'Explore articles, visuals, and resources through one connected experience.',
+    badge: 'Start publishing',
+    title: 'Share imagery and shape a public profile people remember.',
     description:
-      'Move between articles, image-led posts, listings, and resources through one clearer and more connected visual system.',
+      'Create an account to publish image posts, curate your profile surface, and keep every other task type one click away when you need it.',
     primaryCta: {
-      label: 'Get Started Free',
+      label: 'Create account',
       href: '/register',
     },
     secondaryCta: {
-      label: 'Contact Sales',
+      label: 'Contact',
       href: '/contact',
     },
   },
@@ -80,32 +210,32 @@ export const siteContent = {
 
 export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'social'>, { title: string; description: string }> = {
   article: {
-    title: 'Articles and stories',
-    description: 'Read articles, stories, guides, and long-form posts across topics and interests.',
+    title: 'Editorial notes and long reads',
+    description: 'Essays, guides, and stories that pair well with the gallery when you want more context.',
   },
   listing: {
-    title: 'Listings and discoverable pages',
-    description: 'Explore listings, services, brands, and structured pages organized for easier browsing.',
+    title: 'Discoverable listings',
+    description: 'Structured pages for brands, studios, and services that show up alongside visual work.',
   },
   classified: {
-    title: 'Classifieds and announcements',
-    description: 'Browse classifieds, offers, notices, and time-sensitive posts across categories.',
+    title: 'Timely posts and offers',
+    description: 'Short-form notices and deals when you need something faster than a gallery scroll.',
   },
   image: {
-    title: 'Images and visual posts',
-    description: 'Explore image-led posts, galleries, and visual stories from across the platform.',
+    title: 'Image gallery',
+    description: 'Image-led posts, visual series, and media-first browsing tuned for discovery.',
   },
   profile: {
-    title: 'Profiles and public pages',
-    description: 'Discover public profiles, brand pages, and identity-focused posts in one place.',
+    title: 'Public profiles',
+    description: 'Creator and brand profiles that anchor the imagery you discover on Redesocial Pro.',
   },
   sbm: {
-    title: 'Curated links and saved resources',
-    description: 'Browse useful links, saved references, and curated resources organized for discovery.',
+    title: 'Saved links and references',
+    description: 'Curated bookmarks and resource lists for deeper creative and professional trails.',
   },
   pdf: {
-    title: 'PDFs and downloadable resources',
-    description: 'Open reports, documents, and downloadable resources shared across the platform.',
+    title: 'Documents and downloads',
+    description: 'PDFs, decks, and files shared across the platform when you need something to take away.',
   },
 }
 
@@ -114,132 +244,132 @@ export const taskIntroCopy: Record<
   { title: string; paragraphs: string[]; links: { label: string; href: string }[] }
 > = {
   listing: {
-    title: 'Listings, services, and structured pages',
+    title: 'Listings that sit beside the gallery',
     paragraphs: [
-      'Explore listings, services, brands, and discoverable pages across categories. Each entry is organized to make browsing clearer and help visitors quickly understand what a post offers.',
-      'Listings connect naturally with articles, images, resources, and other content types so supporting information stays easy to reach from the same platform.',
-      'Browse by category to compare posts in context, discover related content, and move between formats without losing your place.',
+      'Listings give structured detail—hours, services, locations—when a visual post needs a business home.',
+      'They stay available without taking over the image-first rhythm of the site.',
+      'Browse listings when you are ready to act, then return to imagery when you want inspiration again.',
     ],
     links: [
-      { label: 'Read articles', href: '/articles' },
-      { label: 'Explore classifieds', href: '/classifieds' },
+      { label: 'Browse images', href: '/images' },
+      { label: 'Open classifieds', href: '/classifieds' },
       { label: 'View profiles', href: '/profile' },
     ],
   },
   article: {
-    title: 'Articles, stories, and long-form reading',
+    title: 'Long-form writing with gallery pacing',
     paragraphs: [
-      'This section is built for stories, explainers, guides, and long-form reading across topics and interests.',
-      'Articles connect with listings, images, resources, and other content types so deeper reading can lead naturally into related discovery.',
-      'Use this section to browse thoughtful posts, revisit useful writing, and move into supporting content when you want more context.',
+      'Articles add narrative depth when a single image is not enough—process notes, essays, and guides live here.',
+      'The layout uses editorial spacing so reading feels intentional, not squeezed into a feed.',
+      'Jump between writing and visuals whenever a story references new work.',
     ],
     links: [
-      { label: 'Explore listings', href: '/listings' },
       { label: 'Open images', href: '/images' },
-      { label: 'Browse resources', href: '/pdf' },
+      { label: 'See profiles', href: '/profile' },
+      { label: 'PDF library', href: '/pdf' },
     ],
   },
   classified: {
-    title: 'Classifieds, offers, and timely updates',
+    title: 'Short posts for timely opportunities',
     paragraphs: [
-      'Classified posts help surface offers, notices, deals, and time-sensitive opportunities in a faster-scanning format.',
-      'They work well alongside articles, listings, and profiles, making it easier to connect short-term posts with more structured content.',
-      'Browse by category to find announcements quickly, then continue into related sections when you need more detail.',
+      'Classifieds handle gigs, rentals, gear, and quick offers that need fast scanning.',
+      'They are visually quieter than the gallery so urgency reads clearly.',
+      'Pair classified browsing with profiles when you want to know who is behind a post.',
     ],
     links: [
+      { label: 'Image gallery', href: '/images' },
       { label: 'Business listings', href: '/listings' },
-      { label: 'Read articles', href: '/articles' },
-      { label: 'View profiles', href: '/profile' },
+      { label: 'Profiles', href: '/profile' },
     ],
   },
   image: {
-    title: 'Image-led posts and visual stories',
+    title: 'The image gallery—center of Redesocial Pro',
     paragraphs: [
-      'Images take the lead in this section through galleries, visual posts, and story-led content where imagery carries the experience.',
-      'These posts connect with articles, listings, and other sections so visuals can act as entry points into deeper content.',
-      'Browse the latest visual updates, then continue into related stories or supporting pages for more context.',
+      'This is the primary surface for image-led posts: large media, soft corners, and a masonry rhythm tuned for viewers.',
+      'Use it to publish portfolios, mood boards, campaign stills, or any story where the picture leads.',
+      'Profiles and articles stay one click away when someone wants more context.',
     ],
     links: [
+      { label: 'Meet creators', href: '/profile' },
       { label: 'Read articles', href: '/articles' },
-      { label: 'Explore listings', href: '/listings' },
-      { label: 'Open classifieds', href: '/classifieds' },
+      { label: 'Saved resources', href: '/sbm' },
     ],
   },
   profile: {
-    title: 'Profiles, identities, and public pages',
+    title: 'Profiles that complete the picture',
     paragraphs: [
-      'Profiles capture the identity behind a business, creator, brand, or project and help visitors understand who is behind the content they are exploring.',
-      'These pages work as trust anchors across the site and connect naturally with stories, listings, documents, and other post types.',
-      'Browse profiles to understand people and brands more clearly, then continue into related content from the same source.',
+      'Profiles are the secondary emphasis: public identity pages for photographers, studios, and collaborators.',
+      'They anchor trust—bios, links, and highlights—without turning the whole site into a directory clone.',
+      'Browse profiles to understand who published the work you saved from the gallery.',
     ],
     links: [
-      { label: 'Open listings', href: '/listings' },
-      { label: 'Read articles', href: '/articles' },
       { label: 'Browse images', href: '/images' },
+      { label: 'Open listings', href: '/listings' },
+      { label: 'Articles', href: '/articles' },
     ],
   },
   sbm: {
-    title: 'Curated links and bookmarked resources',
+    title: 'Curated shelves for references',
     paragraphs: [
-      'This section collects useful links, references, tools, and saved resources in a text-first browsing format.',
-      'Bookmarks stay connected to the rest of the platform, making it easier to move from a saved link into related stories, listings, or resources.',
-      'Use this section to organize helpful sources and discover connected content without leaving the broader site experience.',
+      'Bookmarks collect tutorials, gear lists, mood links, and anything you want to revisit later.',
+      'The layout stays text-forward so resources remain easy to scan.',
+      'Use shelves alongside imagery when a post needs supporting links.',
     ],
     links: [
-      { label: 'Browse articles', href: '/articles' },
-      { label: 'Explore listings', href: '/listings' },
-      { label: 'Open PDFs', href: '/pdf' },
+      { label: 'Gallery', href: '/images' },
+      { label: 'Articles', href: '/articles' },
+      { label: 'PDFs', href: '/pdf' },
     ],
   },
   pdf: {
-    title: 'PDFs, documents, and downloadable files',
+    title: 'Downloadable files and decks',
     paragraphs: [
-      'The PDF library hosts reports, guides, downloadable files, and longer-form document resources that support reading and discovery.',
-      'These resources work alongside stories, listings, and profiles, helping document-style content stay connected to the rest of the platform.',
-      'Browse by category to find relevant files quickly, then continue into related sections when you want more context.',
+      'PDFs host longer documents—rate cards, treatments, reports—without forcing them into the image grid.',
+      'Downloads stay organized by category so you can find the right file quickly.',
+      'Pair documents with gallery posts when a project needs both visuals and paperwork.',
     ],
     links: [
-      { label: 'Read articles', href: '/articles' },
-      { label: 'See listings', href: '/listings' },
-      { label: 'Explore profiles', href: '/profile' },
+      { label: 'Images', href: '/images' },
+      { label: 'Articles', href: '/articles' },
+      { label: 'Profiles', href: '/profile' },
     ],
   },
   social: {
-    title: 'Short updates and community signals',
+    title: 'Community signals',
     paragraphs: [
-      'Short updates add quick signals that keep activity flowing across the platform.',
-      'They work well with stories, listings, and resources by helping visitors move from brief updates into deeper content.',
-      'Use these posts as lightweight entry points into the broader site experience.',
+      'Short updates keep momentum between larger publishes.',
+      'They are intentionally lightweight so the gallery remains the hero.',
+      'Use them as breadcrumbs back into imagery and profiles.',
     ],
     links: [
-      { label: 'Open listings', href: '/listings' },
-      { label: 'Read articles', href: '/articles' },
-      { label: 'View PDFs', href: '/pdf' },
+      { label: 'Gallery', href: '/images' },
+      { label: 'Profiles', href: '/profile' },
+      { label: 'Articles', href: '/articles' },
     ],
   },
   comment: {
-    title: 'Comments and contextual responses',
+    title: 'Responses alongside writing',
     paragraphs: [
-      'Comments surface responses connected directly to articles and help keep discussion close to the writing it belongs to.',
-      'This layer adds perspective and reaction without needing a separate standalone content format.',
-      'Use comments as supporting context beneath stories, then continue exploring related content from the same topic area.',
+      'Comments keep discussion attached to articles where it belongs.',
+      'They add perspective without competing with the gallery layout.',
+      'Use them to ask questions, share references, or point readers to related visuals.',
     ],
     links: [
-      { label: 'Explore articles', href: '/articles' },
-      { label: 'View listings', href: '/listings' },
-      { label: 'See classifieds', href: '/classifieds' },
+      { label: 'Articles', href: '/articles' },
+      { label: 'Images', href: '/images' },
+      { label: 'Classifieds', href: '/classifieds' },
     ],
   },
   org: {
-    title: 'Organizations, teams, and structured entities',
+    title: 'Teams and organizations',
     paragraphs: [
-      'Organization pages provide structured identity surfaces for teams, brands, communities, and agencies.',
-      'Used with listings, stories, profiles, and resources, they help create stronger structure across the platform.',
-      'Connect organization pages with related content to build a clearer and more unified site presence.',
+      'Organization pages group people, projects, and shared publishing under one structured identity.',
+      'They complement profiles when a whole studio needs a single surface.',
+      'Connect org pages to listings and imagery for a fuller story.',
     ],
     links: [
-      { label: 'Business listings', href: '/listings' },
-      { label: 'Read articles', href: '/articles' },
+      { label: 'Listings', href: '/listings' },
+      { label: 'Gallery', href: '/images' },
       { label: 'PDF library', href: '/pdf' },
     ],
   },

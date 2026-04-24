@@ -4,8 +4,9 @@ import { useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Search, Menu, X, User, FileText, Building2, LayoutGrid, Tag, Image as ImageIcon, ChevronRight, Sparkles, MapPin, Plus } from 'lucide-react'
+import { Search, Menu, X, User, FileText, Building2, LayoutGrid, Tag, Image as ImageIcon, ChevronRight, ChevronDown, Sparkles, MapPin, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useAuth } from '@/lib/auth-context'
 import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import { cn } from '@/lib/utils'
@@ -196,6 +197,144 @@ export function Navbar() {
             </div>
           </div>
         )}
+      </header>
+    )
+  }
+
+  if (recipe.navbar === 'gallery-top') {
+    const emphasizedKeys = new Set<TaskKey>(siteContent.navbar.emphasizedTaskKeys as unknown as TaskKey[])
+    const enabledTasks = SITE_CONFIG.tasks.filter((task) => task.enabled)
+    const emphasizedNav = enabledTasks.filter((task) => emphasizedKeys.has(task.key))
+    const moreNav = enabledTasks.filter((task) => !emphasizedKeys.has(task.key))
+    const shell =
+      'border-b border-white/[0.08] bg-black/70 text-[#faf8f6] shadow-[0_14px_48px_rgba(0,0,0,0.4)] backdrop-blur-xl supports-[backdrop-filter]:bg-black/55'
+
+    return (
+      <header className={cn('sticky top-0 z-50 w-full', shell)}>
+        <nav className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:gap-4 lg:px-8">
+          <Link href="/" className="flex shrink-0 items-center gap-2.5 sm:gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border border-white/14 bg-[linear-gradient(135deg,rgba(99,102,241,0.25),rgba(139,92,246,0.2))] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:h-11 sm:w-11">
+              <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="48" height="48" className="h-full w-full object-contain" />
+            </div>
+            <div className="min-w-0 hidden leading-tight sm:block">
+              <span className="block truncate font-[family-name:var(--font-display)] text-base font-semibold tracking-[-0.02em] text-white">{SITE_CONFIG.name}</span>
+              <span className="block text-[10px] font-medium uppercase tracking-[0.2em] text-[#c7c8ff]">{siteContent.navbar.tagline}</span>
+            </div>
+          </Link>
+
+          <span className="hidden h-9 w-px shrink-0 bg-gradient-to-b from-transparent via-white/18 to-transparent md:block" aria-hidden />
+
+          <Link
+            href="/search"
+            className="mx-auto hidden min-w-0 max-w-xl flex-1 items-center gap-3 rounded-full border border-white/12 bg-white/[0.06] px-4 py-2.5 text-sm text-[#dbe0ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition duration-200 hover:border-[#8B5CF6]/60 hover:bg-white/[0.1] hover:text-[#faf8f6] md:flex"
+          >
+            <Search className="h-4 w-4 shrink-0 text-[#8B5CF6]" />
+            <span className="truncate">{siteContent.navbar.searchCue}</span>
+          </Link>
+
+          <div className="ml-auto flex items-center gap-1 sm:gap-2">
+            <Button variant="ghost" size="icon" asChild className="shrink-0 rounded-full text-[#faf8f6]/85 hover:bg-white/10 hover:text-white md:hidden">
+              <Link href="/search">
+                <Search className="h-5 w-5" />
+                <span className="sr-only">Search</span>
+              </Link>
+            </Button>
+
+            <div className="hidden items-center gap-1 md:flex">
+              {emphasizedNav.map((task) => {
+                const Icon = taskIcons[task.key] || LayoutGrid
+                const isActive = pathname === task.route || pathname.startsWith(`${task.route}/`)
+                return (
+                  <Link
+                    key={task.key}
+                    href={task.route}
+                    className={cn(
+                      'inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm font-semibold transition-colors duration-200',
+                      isActive ? 'bg-[linear-gradient(135deg,#4F46E5,#8B5CF6)] text-white shadow-[0_10px_24px_rgba(79,70,229,0.35)]' : 'text-[#e8dfd4]/85 hover:bg-white/10 hover:text-white',
+                    )}
+                  >
+                    <Icon className="h-4 w-4 opacity-90" />
+                    <span className="hidden lg:inline">{task.label}</span>
+                  </Link>
+                )
+              })}
+            </div>
+
+            {moreNav.length ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="hidden rounded-xl px-3 text-sm font-semibold text-[#dbe0ff] hover:bg-white/10 hover:text-white md:inline-flex">
+                    {siteContent.navbar.moreLabel}
+                    <ChevronDown className="ml-1 h-4 w-4 opacity-70" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="min-w-[200px] border-[rgba(92,79,74,0.12)] bg-[#faf8f6] text-[#111827]">
+                  {moreNav.map((task) => {
+                    const Icon = taskIcons[task.key] || LayoutGrid
+                    return (
+                      <DropdownMenuItem key={task.key} asChild className="cursor-pointer">
+                        <Link href={task.route} className="flex items-center gap-2">
+                          <Icon className="h-4 w-4" />
+                          {task.label}
+                        </Link>
+                      </DropdownMenuItem>
+                    )
+                  })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : null}
+
+            {isAuthenticated ? (
+              <NavbarAuthControls tone="contrast" />
+            ) : (
+              <div className="hidden items-center gap-1.5 sm:flex">
+                <Button variant="ghost" size="sm" asChild className="rounded-full px-3 text-[#faf8f6]/90 hover:bg-white/10 hover:text-white">
+                  <Link href="/login">Sign In</Link>
+                </Button>
+                <Button size="sm" asChild className="rounded-full border border-[#8B5CF6]/45 bg-[linear-gradient(135deg,#6366F1_0%,#8B5CF6_100%)] px-4 text-white shadow-[0_8px_22px_rgba(79,70,229,0.38)] transition duration-200 hover:scale-[1.03] hover:brightness-[1.06] active:scale-[0.98]">
+                  <Link href="/register">Get started</Link>
+                </Button>
+              </div>
+            )}
+
+            <Button variant="ghost" size="icon" className="rounded-full text-[#faf8f6] hover:bg-white/10 md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
+        </nav>
+
+        {isMobileMenuOpen ? (
+          <div className="border-t border-white/10 bg-[#141210] md:hidden">
+            <div className="space-y-1 px-4 py-4">
+              <Link
+                href="/search"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mb-2 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-[#e8dfd4]"
+              >
+                <Search className="h-4 w-4 text-[#8B5CF6]" />
+                {siteContent.navbar.searchCue}
+              </Link>
+              {[...emphasizedNav, ...moreNav].map((task) => {
+                const Icon = taskIcons[task.key] || LayoutGrid
+                const isActive = pathname === task.route || pathname.startsWith(`${task.route}/`)
+                return (
+                  <Link
+                    key={task.key}
+                    href={task.route}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn(
+                      'flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold transition-colors',
+                      isActive ? 'bg-[linear-gradient(135deg,#4F46E5,#8B5CF6)] text-white' : 'bg-white/[0.06] text-[#faf8f6] hover:bg-white/10',
+                    )}
+                  >
+                    <Icon className="h-5 w-5" />
+                    {task.label}
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        ) : null}
       </header>
     )
   }
